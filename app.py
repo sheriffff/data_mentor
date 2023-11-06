@@ -24,7 +24,7 @@ def build_sidebar():
                                     key="use_case", index=0)
 
     st.session_state.language = st.sidebar.radio("Response Language", options=langs, index=0)
-    st.sidebar.markdown("done by [Sheriff](https://linkedin.com/in/sheriff-data)")
+    st.sidebar.markdown("done by [sheriff](https://linkedin.com/in/sheriff-data)")
 
     if use_case == "Home":
         page_index()
