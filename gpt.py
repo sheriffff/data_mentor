@@ -16,6 +16,6 @@ def ask_gpt(system_role: str, user_messages: List[str]):
         messages=messages
     )
 
-    response_text = response_gpt['choices'][0]['message']["content"]
+    response_text = response_gpt.choices[0].message.content
 
     return response_text
