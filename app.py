@@ -147,6 +147,7 @@ def page_exercise():
 
 def page_dataset():
     st.header(Tools.DATASET_FINDER)
+    st.subheader("Work in progress 🚧")
 
 
 if __name__ == "__main__":
