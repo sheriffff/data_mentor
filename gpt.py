@@ -1,15 +1,17 @@
-from typing import List
-from config import OPENAI_KEY
 from openai import OpenAI
+
+from config import OPENAI_KEY, GPT_ROLE
 
 client = OpenAI(api_key=OPENAI_KEY)
 
 
-def ask_gpt(system_role: str, user_messages: List[str]):
-    messages = [{"role": "system", "content": system_role}]
+def ask_gpt(user_message: str, language_response: str = "ENG"):
+    user_message = user_message + f"\nPlease provide your answer in the following language: {language_response}."
 
-    for user_message in user_messages:
-        messages.append({"role": "user", "content": user_message})
+    messages = [
+        {"role": "system", "content": GPT_ROLE},
+        {"role": "user", "content": user_message},
+    ]
 
     response_gpt = client.chat.completions.create(
         model="gpt-4",
