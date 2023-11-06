@@ -1,4 +1,3 @@
-import openai
 import streamlit as st
 
 from config import langs
