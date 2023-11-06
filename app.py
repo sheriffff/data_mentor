@@ -47,7 +47,7 @@ def page_index():
 def page_concept():
     st.header("Concept Illuminator 💡")
 
-    concept = st.text_input('Concept')
+    concept = st.text_input('Ask about any Python/Data related concept')
 
     col1, col2 = st.columns(2)
     explanation_type = col1.radio('Explanation level', options=['5 year old', 'Basic', 'Intermediate', 'Expert'], index=1)
