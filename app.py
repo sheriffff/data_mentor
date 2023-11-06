@@ -4,9 +4,6 @@ from config import langs
 from gpt import ask_gpt
 
 
-# load keys from file keys.txt
-
-
 def main():
     set_page_config()
     build_sidebar()
@@ -40,6 +37,15 @@ def build_sidebar():
 
 
 def page_index():
+    import openai
+    # print openai module path
+    st.text(openai.__file__)
+    # main classes of openai
+    for elem in dir(openai):
+        first_char = elem[0]
+        if first_char.isupper():
+            st.text(elem)
+
     st.header("Welcome to PyData Mentor 🧑‍🏫️")
     st.subheader("A series of tools to help you learn Python and Data Science")
 
