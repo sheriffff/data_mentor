@@ -1,6 +1,8 @@
+import random
+
 import streamlit as st
 
-from config import langs, Tools, SPINNER_TEXT
+from config import langs, Tools, SPINNER_TEXT, SPINNER_TEXT_IMAGINE, random_concepts, MESSAGE_RANDOM_CONCEPT
 from gpt import ask_gpt
 
 
@@ -20,20 +22,20 @@ def set_page_config():
 def build_sidebar():
     st.sidebar.header("PyData Mentor 🧑‍🏫")
     # no selection by default in selectbox
-    use_case = st.sidebar.selectbox("Tool", ('Home', Tools.CONCEPT_ILLUMINATOR, Tools.PUZZLE_BUILDER, Tools.DATASET_FINDER),
+    use_case = st.sidebar.selectbox("Tool", (Tools.CONCEPT_ILLUMINATOR, Tools.PUZZLE_BUILDER, Tools.DATASET_FINDER, Tools.ABOUT),
                                     key="use_case", index=0)
 
     st.session_state.language = st.sidebar.radio("Response Language", options=langs, index=0)
     st.sidebar.markdown("done by [sheriff](https://linkedin.com/in/sheriff-data)")
 
-    if use_case == "Home":
-        page_index()
-    elif use_case == Tools.CONCEPT_ILLUMINATOR:
+    if use_case == Tools.CONCEPT_ILLUMINATOR:
         page_concept()
     elif use_case == Tools.PUZZLE_BUILDER:
         page_exercise()
     elif use_case == Tools.DATASET_FINDER:
         page_dataset()
+    elif use_case == Tools.ABOUT:
+        page_index()
 
 
 def page_index():
@@ -68,12 +70,17 @@ def build_concept_query(concept, explanation_type: str, explanation_length: str,
         query_llm += " Include a real-world example of how this concept is applied."
 
     query_llm += "I will write the explanation using markdown. So please use markdown syntax, especially for bold and italic."
+    query_llm += "In particular, start with a header3 as title."
 
     return query_llm
 
 
 def ask_for_concept_inputs():
-    concept = st.text_input('Ask about any Python/Data related concept')
+    random_concept = random.choice(random_concepts)
+    concept = st.text_input(
+        'Ask about any Python/Data related concept',
+        # placeholder=random_concept.lower()
+    )
 
     col1, col2 = st.columns(2)
     explanation_type = col1.radio('Explanation level', options=['5 year old', 'Basic', 'Intermediate', 'Expert'],
@@ -98,7 +105,15 @@ def page_concept():
                 language_response=st.session_state.language
             )
 
-        st.subheader("Explanation")
+        st.markdown(explanation)
+
+    if st.button('GO RANDOM'):
+        with st.spinner(SPINNER_TEXT_IMAGINE):
+            explanation = ask_gpt(
+                user_message=MESSAGE_RANDOM_CONCEPT,
+                language_response=st.session_state.language
+            )
+
         st.markdown(explanation)
 
 
