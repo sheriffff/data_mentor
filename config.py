@@ -3,19 +3,28 @@ from dotenv import load_dotenv
 load_dotenv()
 OPENAI_KEY = os.environ["OPENAI_KEY"]
 
-GPT_ROLE = "You are helpful teacher, who knows a lot about Python and Data Science. Do never answer non related questions. "
-MESSAGE_RANDOM_CONCEPT = "Choose a data/python/machine learning concept. Then give an explanation. Put a header3 as title using markdown. Be creative choosing the concept. "
-SPINNER_TEXT = f"Thinking... 🧠🧠🧠"
-SPINNER_TEXT_IMAGINE = f"Imagining... ✨✨✨"
+GPT_MODEL = "gpt-4-1106-preview"
+GPT_ROLE = "Eres un experto en Python y Data Science. Nunca respondas a preguntas no relacionadas. En tus respuestas usas markdown. Tu respuesta empieza siempre con un encabezado de nivel 3. "
+MESSAGE_RANDOM_CONCEPT = "Elige un concepto de análisis de datos / python / machine leqarning. Sé creativo al elegir el concepto, no siempre lo mismo. Explícalo. "
 
-langs = ["ESP", "ENG"]
+SPINNER_TEXT = f"Pensando... 🧠🧠🧠"
+SPINNER_TEXT_IMAGINE = f"Imaginando... ✨✨✨"
+SPINNER_TEXT_EXERCISE = f"Generando... 🧩🧩🧩 puede llevar hasta 2 minutos..."
+
+language_code_to_name = {
+    "ESP": "Spanish",
+}
+
+explanation_length_code_to_name = {
+    "XS": "Muy corta",
+    "S": "Corta",
+    "M": "Mediana",
+    "L": "Larga",
+}
 
 
 class Tools:
-    CONCEPT_ILLUMINATOR = "💡 Concept Illuminator"
-    PUZZLE_BUILDER = "🧩 Puzzle Builder"
+    CONCEPT_ILLUMINATOR = "💡 Faro del Saber"
+    PUZZLE_BUILDER = "🧩 Puzzle Generator"
     DATASET_FINDER = "📊 Dataset Finder"
     ABOUT = "ℹ️ About"
-
-
-random_concepts = ["Decorators", "Regular Expressions", "Gradient Descent", "Bayesian Inference", "Support Vector Machines", "Pandas DataFrame", "Monte Carlo Simulation", "Cross-Validation", "Principal Component Analysis", "Generators", "Deep Learning", "Scikit-learn", "Time Series Analysis", "Natural Language Processing", "K-means Clustering", "Neural Networks", "Confidence Intervals", "Multi-threading", "Lambda Functions", "Convolutional Neural Networks", "Variables", "Lists", "Dictionaries", "For Loops", "If Statements", "Functions", "Modules", "Data Types", "String Formatting", "Boolean Logic"]

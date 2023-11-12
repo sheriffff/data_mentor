@@ -1,12 +1,12 @@
 from openai import OpenAI
 
-from config import OPENAI_KEY, GPT_ROLE
+from config import OPENAI_KEY, GPT_ROLE, GPT_MODEL
 
 client = OpenAI(api_key=OPENAI_KEY)
 
 
-def ask_gpt(user_message: str, language_response: str = "ENG"):
-    user_message = user_message + f"\nPlease provide your answer in the following language: {language_response}."
+def ask_gpt(user_message: str, language_response: str = "español"):
+    # user_message = user_message + f"\nPorfavor, da tu respuesta en la lengua: {language_response}."
 
     messages = [
         {"role": "system", "content": GPT_ROLE},
@@ -14,8 +14,8 @@ def ask_gpt(user_message: str, language_response: str = "ENG"):
     ]
 
     response_gpt = client.chat.completions.create(
-        model="gpt-4",
-        messages=messages
+        model=GPT_MODEL,
+        messages=messages,
     )
 
     response_text = response_gpt.choices[0].message.content
