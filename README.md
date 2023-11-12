@@ -1,7 +1,6 @@
 # PyData Mentor 🧑‍🏫
-## A webapp to help my students learn more efficiently
+## Una webapp para ayudar a mis estudiantes a aprender más eficientemente
 
-with the following tools:
-- Concept Illuminator 💡: review a concept and ask for real world examples
-- Puzzle Builder 🧩: generate an exercise to test your knowledge
-- Dataset Finder 📊: find a dataset to practice your skills
+con las siguientes herramientas:
+- Faro del Saber 💡: revisa un concepto y pide ejemplos del mundo real
+- Puzzle Generator 🧩: genera un ejercicio para probar tus conocimientos
